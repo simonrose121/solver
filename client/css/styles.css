@@ -1,0 +1,47 @@
+body
+{
+	font-family: 'Roboto', sans-serif;
+}
+
+#top-bar
+{
+	background-color: #7B1FA2;
+	width: 100%;
+	/*position: fixed;*/
+	z-index: 10;
+	height: 50px;
+}
+
+ul.list
+{
+	margin-left: 0;
+}
+
+ul.list li
+{
+	margin-left: 0;
+	float: left;
+	width: 100%;
+	list-style-type: none;
+	height: 60px;
+	border-bottom: #B6B6B6 thin solid;
+	line-height: 60px;
+}
+
+ul.list li form
+{
+	float:right;
+}
+
+.logo
+{
+	float:left;
+	color: #FFF;
+	margin-top: 14px;
+  	margin-left: 21px;
+}
+
+button
+{
+	background-color: #9C27B0;
+}
