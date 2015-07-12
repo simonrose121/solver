@@ -17,8 +17,8 @@ app.use('/css', express.static(__dirname + '/client/css'));
 app.use('/img', express.static(__dirname + '/client/img'));
 
 app.get('/api/problems', problemController.list);
-app.post('/api/problems', problemController.create);
-app.post('/api/problems', problemController.addSolution);
+app.post('/api/problems/add', problemController.create);
+app.post('/api/problems/addSolution', problemController.addSolution);
 
 app.listen(3000, function() {
 	console.log('listening');

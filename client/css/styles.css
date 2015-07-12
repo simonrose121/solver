@@ -39,10 +39,20 @@ ul.list li .name
 	padding-left: 20px;
 }
 
-ul.list li .solutions
+ul.solutions
 {
-	float:right;
-	padding-left: 20px;
+	float:left;
+}
+
+ul.solutions li
+{
+	margin-left: 0;
+	float: left;
+	width: 100%;
+	list-style-type: none;
+	height: 60px;
+	border-bottom: #B6B6B6 thin solid;
+	line-height: 60px;
 }
 
 .logo
