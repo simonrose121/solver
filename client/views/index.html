@@ -3,6 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Solver</title>
+		<link rel="icon" href="img/favicon.png" type="image/png">
+
 		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="/css/normalize.css">
 		<link rel="stylesheet" type="text/css" href="/css/foundation.min.css">
@@ -27,7 +29,9 @@
 					<div class="large-12 columns">
 						<ul class="list">
 							<li ng-repeat="problem in problems">
-								{{ problem.name }}
+								<div class="name">
+									{{ problem.name }}
+								</div>
 								<ul class="solutions">
 									<li ng-repeat="solution in problems.solutions">
 										{{ solution.name }}

@@ -12,9 +12,3 @@ module.exports.list = function(req, res) {
 		res.json(result);
 	});
 }
-
-module.exports.addSolution = function(req, res) {
-	Problem.find({problem.id = req.id}, function(err, result) {
-		res.json(result);
-	});
-}

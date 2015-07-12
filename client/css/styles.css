@@ -33,6 +33,18 @@ ul.list li form
 	float:right;
 }
 
+ul.list li .name
+{
+	float:left;
+	padding-left: 20px;
+}
+
+ul.list li .solutions
+{
+	float:right;
+	padding-left: 20px;
+}
+
 .logo
 {
 	float:left;

@@ -14,6 +14,7 @@ app.get('/', function(req, res) {
 
 app.use('/js', express.static(__dirname + '/client/js'));
 app.use('/css', express.static(__dirname + '/client/css'));
+app.use('/img', express.static(__dirname + '/client/img'));
 
 app.get('/api/problems', problemController.list);
 app.post('/api/problems', problemController.create);
