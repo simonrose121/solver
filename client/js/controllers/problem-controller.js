@@ -15,4 +15,11 @@ app.controller('problemController', ['$scope', '$resource', function($scope, $re
 			$scope.problemName = "";
 		});
 	};
+
+	$scope.addSolution = function(problem, solution) {
+		problem.$save(function(solution) {
+			problem.solutions.push(solution);
+			$scope.problems.solutionName = "";
+		});
+	};
 }]);

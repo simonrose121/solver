@@ -33,18 +33,18 @@
 									{{ problem.name }}
 								</div>
 								<ul class="solutions">
-									<li ng-repeat="solution in problems.solutions">
+									<li ng-repeat="solution in problem.solutions">
 										{{ solution.name }}
 									</li>
 								</ul>
-								<form ng-submit="addSolution()">
-									<input type="text" placeholder="Solution name" ng-model="solutionName"></input>
+								<form ng-submit="addSolution(problem, solutionName)">
+									<input type="text" placeholder="Solution.." ng-model="solutionName"></input>
 									<button type="submit">Add</button>
 								</form>
 							</li>
 						</ul>
 						<form ng-submit="addProblem()">
-							<input type="text" placeholder="Problem name" ng-model="problemName"></input>
+							<input type="text" placeholder="Problem.." ng-model="problemName"></input>
 							<button type="submit">Add</button>
 						</form>
 					</div>
