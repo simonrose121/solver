@@ -1,37 +1,34 @@
 app.controller('problemController', ['$scope', '$resource', function($scope, $resource) {
-	var Problems = $resource('api/problems/');
-	var RemoveProblem = $resource('api/problems/');
-	var AddProblem = $resource('api/problems/add');
-	var AddSolution = $resource('api/problems/addSolution');
+	var ProblemAPI = $resource('api/problems/');
+	var SolutionAPI = $resource('api/solutions/');
+	var problems = new ProblemAPI();
+	var solutions = new SolutionAPI();
 
-	Problems.query(function (results) {
+	ProblemAPI.query(function (results) {
 		$scope.problems = results;
 	});
 
 	$scope.problems = [];
 
 	$scope.addProblem = function() {
-		var problem = new AddProblem();
-		problem.name = $scope.problemName;
-		problem.$save(function(result) {
+		problems.name = $scope.problemName;
+		problems.$save(function(result) {
 			$scope.problems.push(result);
 			$scope.problemName = "";
 		});
 	};
 
-	$scope.addSolution = function(problem, solution) {
-		var problem = new AddSolution(problem);
-		problem.solutions.push(solution);
-		problem.$save(function() {
-			$scope.solutionName = "";
-		});
-	};
-
 	$scope.deleteProblem = function(problem) {
-		console.log("deleted");
-		var problem = new RemoveProblem(problem);
-		problem.$delete(function(result) {
+		problems.$delete(function(result) {
 			$scope.problems.splice(result, 1);
 		});
 	}
+
+	$scope.addSolution = function(problem, solution) {
+		console.log(problem)
+		problems.$save(function(result) {
+			$scope.solutionName = "";
+			problem.solutions.push(solution);
+		});
+	};
 }]);

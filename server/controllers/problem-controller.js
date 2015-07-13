@@ -28,6 +28,7 @@ module.exports.list = function(req, res) {
 
 module.exports.addSolution = function(req, res) {
 	var solution = new Solution();
+	console.log(req.body);
 	solution.name = req.body.solutions[0];
 	console.log(solution);
 	var update = { $push: { solutions: solution } };
