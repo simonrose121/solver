@@ -15,6 +15,7 @@ body
 ul.list
 {
 	margin-left: 0;
+	float: left;
 }
 
 ul.list li
@@ -30,18 +31,21 @@ ul.list li
 
 ul.list li form
 {
-	float:right;
+	
 }
 
 ul.list li .name
 {
 	float:left;
 	padding-left: 20px;
+  	width: 69%;
 }
 
 ul.solutions
 {
-	float:left;
+	clear: both;
+ 	float: left;
+  	width: 100%;
 }
 
 ul.solutions li
@@ -66,4 +70,9 @@ ul.solutions li
 button
 {
 	background-color: #9C27B0;
+}
+
+.add-problem
+{
+	float: left;
 }

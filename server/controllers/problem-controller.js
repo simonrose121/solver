@@ -9,6 +9,17 @@ module.exports.create = function(req, res) {
 	});
 }
 
+module.exports.remove = function(req, res) {
+	console.log(req.body);
+	Problem.remove(req.body._id, function(err, result) {
+		if(err != null) {
+			console.log(err);
+		} else {
+			res.json(result);
+		}
+	});
+}
+
 module.exports.list = function(req, res) {
 	Problem.find({}, function(err, result) {
 		res.json(result);

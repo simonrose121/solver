@@ -1,10 +1,10 @@
 app.controller('problemController', ['$scope', '$resource', function($scope, $resource) {
 	var Problems = $resource('api/problems/');
+	var RemoveProblem = $resource('api/problems/');
 	var AddProblem = $resource('api/problems/add');
 	var AddSolution = $resource('api/problems/addSolution');
 
 	Problems.query(function (results) {
-		console.log(results);
 		$scope.problems = results;
 	});
 
@@ -26,4 +26,12 @@ app.controller('problemController', ['$scope', '$resource', function($scope, $re
 			$scope.solutionName = "";
 		});
 	};
+
+	$scope.deleteProblem = function(problem) {
+		console.log("deleted");
+		var problem = new RemoveProblem(problem);
+		problem.$delete(function(result) {
+			$scope.problems.splice(result, 1);
+		});
+	}
 }]);
