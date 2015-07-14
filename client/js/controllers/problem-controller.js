@@ -1,34 +1,27 @@
-app.controller('problemController', ['$scope', '$resource', function($scope, $resource) {
-	var ProblemAPI = $resource('api/problems/');
-	var SolutionAPI = $resource('api/solutions/');
-	var problems = new ProblemAPI();
-	var solutions = new SolutionAPI();
+app.controller('problemController', ['$scope', '$http', function($scope, $http) {
+	$scope.formData = {};
 
-	ProblemAPI.query(function (results) {
-		$scope.problems = results;
+	$http.get('/api/problems').success(function(data) {
+		$scope.problems = data;
+        console.log(data);
+	}).error(function(data) {
+		console.log('Error: ' + data);
 	});
 
-	$scope.problems = [];
-
 	$scope.addProblem = function() {
-		problems.name = $scope.problemName;
-		problems.$save(function(result) {
-			$scope.problems.push(result);
-			$scope.problemName = "";
+		$http.post('/api/problems', $scope.formData).success(function(data) {
+			$scope.formData = {};
+			$scope.problems = data;
+		}).error(function(data) {
+			console.log('Error: ' + data);
 		});
 	};
 
-	$scope.deleteProblem = function(problem) {
-		problems.$delete(function(result) {
-			$scope.problems.splice(result, 1);
+	$scope.deleteProblem = function(id) {
+		$http.delete('api/problems/' + id).success(function(data) {
+			$scope.problems = data;
+		}).error(function(data) {
+			console.log('Error: ' + data);
 		});
 	}
-
-	$scope.addSolution = function(problem, solution) {
-		console.log(problem)
-		problems.$save(function(result) {
-			$scope.solutionName = "";
-			problem.solutions.push(solution);
-		});
-	};
 }]);

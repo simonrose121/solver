@@ -29,31 +29,19 @@
 					<div class="large-12 columns">
 						<ul class="list">
 							<li ng-repeat="problem in problems">
-								<div class="delete">
-									<form ng-submit="deleteProblem(problem)">
-										<button type="submit">X</button>
-									</form>
-								</div>
 								<div class="name">
 									{{ problem.name }}
 								</div>
-								<ul class="solutions">
-									<li ng-repeat="solution in problem.solutions">
-										{{ solution.name }}
-									</li>
-								</ul>
-								<form ng-submit="addSolution(problem, solutionName)">
-									<input type="text" placeholder="Solution.." ng-model="solutionName"></input>
-									<button type="submit">Add</button>
+								<form ng-submit="deleteProblem(problem._id)">
+									<button type="submit">X</button>
 								</form>
 							</li>
 						</ul>
-						<div class="add-problem">
-							<form ng-submit="addProblem()">
-								<input type="text" placeholder="Problem.." ng-model="problemName"></input>
-								<button type="submit">Add</button>
-							</form>
-						</div>
+						 <div class="form-group">
+	                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+	                        <input type="text" ng-model="formData.name">
+                		</div>
+                		<button type="submit" ng-click="addProblem()">Add</button>
 					</div>
 				</div>
 			</div>

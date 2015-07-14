@@ -18,8 +18,7 @@ app.use('/img', express.static(__dirname + '/client/img'));
 
 app.get('/api/problems', problemController.list);
 app.post('/api/problems', problemController.create);
-app.delete('/api/problems', problemController.remove);
-app.post('/api/solutions', problemController.addSolution);
+app.delete('/api/problems/:id', problemController.delete);
 
 app.listen(3000, function() {
 	console.log('listening');
