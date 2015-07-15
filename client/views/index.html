@@ -6,50 +6,84 @@
 		<link rel="icon" href="img/favicon.png" type="image/png">
 
 		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="/css/normalize.css">
-		<link rel="stylesheet" type="text/css" href="/css/foundation.min.css">
+		<!--<link rel="stylesheet" type="text/css" href="/css/normalize.css">-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="/css/styles.css">
+
 	</head>
 	<body>
 		<div ng-controller="problemController">
-			<div class="row">
-				<div class="large-12 columns">
-					<div id="top-bar">
-						<div class="menu">
-
-						</div>
-						<div class="logo">
-							Solver
+			<div class="container">
+			 	<nav>
+				    <div class="nav-wrapper">
+				      	<a href="#" class="brand-logo">Solver</a>
+			 		</div>
+				</nav>
+				<div class="row">
+					<div class="col s12">
+					 	<div class="collection with-header">
+							<ul>
+								<li ng-repeat="problem in problems">
+									<div class="row">
+										<div class="col s6">
+											<a href="#!" class="collection-header">
+												{{ problem.name }}
+											</a>
+											<div class="collection">
+												<ul>
+													<li ng-repeat="solution in problem.solutions">
+														<a class="collection-item">
+															<input type="checkbox" name="done" value="solution.done">
+															{{ solution.name }}
+														</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div class="col s2">
+											<form ng-submit="deleteProblem(problem._id)">
+												<button class="btn waves-effect waves-light" type="submit" name="action">
+												    <i class="material-icons">delete</i>
+											  	</button>
+											</form>
+										</div>
+										<div class="col s4">
+											<div>
+												<div class="form-group">
+							                        <input type="text" ng-model="solutionForm.name">
+						                		</div>
+						                		<form ng-submit="addSolution(problem._id)">
+							                		<button class="btn waves-effect waves-light" type="submit" name="action">Add Solution
+													    <i class="material-icons">send</i>
+												  	</button>
+											  	</form>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div id="content">
 				<div class="row">
-					<div class="large-12 columns">
-						<ul class="list">
-							<li ng-repeat="problem in problems">
-								<div class="name">
-									{{ problem.name }}
-								</div>
-								<form ng-submit="deleteProblem(problem._id)">
-									<button type="submit">X</button>
-								</form>
-							</li>
-						</ul>
-						 <div class="form-group">
-	                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-	                        <input type="text" ng-model="formData.name">
-                		</div>
-                		<button type="submit" ng-click="addProblem()">Add</button>
-					</div>
+					<div class="col s12">
+						<div class="form-group">
+		                    <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+		                    <input type="text" ng-model="formData.name">
+		        		</div>
+		        		<a class="btn-floating waves-effect waves-light btn-large" ng-click="addProblem()">
+		        			<i class="material-icons">add</i>
+		        		</a>
+		        	</div>
 				</div>
 			</div>
 		</div>
-
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-resource.min.js"></script>
 		<script src="/js/app.js"></script>
 		<script src="/js/controllers/problem-controller.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 	</body>
 </html>

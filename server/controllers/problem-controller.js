@@ -1,40 +1,31 @@
-var Problem = require('../models/problem');
+var schema = require('../models/schema');
+
+var list = function(req, res) {
+	schema.problem.find({}, function(err, result) {
+		if (err) {
+			res.send(err);
+		}
+		console.log(result)
+		res.json(result);
+	});
+}
 
 module.exports.create = function(req, res) {
-	Problem.create({name: req.body.name, done: false}, function(err, result) {
+	schema.problem.create({name: req.body.name, done: false}, function(err, result) {
 		if (err)
 			res.send(err);
 
-		// return all problems
-		Problem.find({}, function(err, result) {
-			if (err) {
-				res.send(err);
-			}
-			res.json(result);
-		});
+		list(req, res);
 	});
 };
 
 module.exports.delete = function(req, res) {
-	Problem.remove({_id: req.params.id}, function(err, result) {
+	schema.problem.remove({_id: req.params.id}, function(err, result) {
 		if (err)
 			res.send(err);
 
-		// return all problems
-		Problem.find({}, function(err, result) {
-			if (err) {
-				res.send(err);
-			}
-			res.json(result);
-		});
+		list(req, res);
 	});
 };
 
-module.exports.list = function(req, res) {
-	Problem.find({}, function(err, result) {
-		if (err) {
-			res.send(err);
-		}
-		res.json(result);
-	});
-};
+module.exports.list = list;
