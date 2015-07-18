@@ -23,3 +23,13 @@ a {
 .collection a.collection-item {
 	color: #9C27B0;
 }
+
+.done {
+	text-decoration: line-through;
+}
+
+@media (min-width : 1024px) {
+	.container {
+		width: 720px;
+	}
+}

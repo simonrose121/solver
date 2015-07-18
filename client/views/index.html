@@ -20,51 +20,46 @@
 				      	<a href="#" class="brand-logo center">Solver</a>
 			 		</div>
 				</nav>
-				<div class="row">
-					<div class="col s12">
-					 	<div class="collection with-header">
-							<ul>
-								<li ng-repeat="problem in problems">
-									<div class="row">
-										<div class="col s6">
-											<a href="#!" class="collection-header">
-												{{ problem.name }}
-											</a>
-											<div class="collection">
-												<ul>
-													<li ng-repeat="solution in problem.solutions">
-														<a class="collection-item">
-															<input type="checkbox" name="done" ng-model="solution.done" ng-change="updateSolution(solution._id, problem._id, solution.done)">
-															{{ solution.name }}
-														</a>
-													</li>
-												</ul>
-											</div>
-										</div>
-										<div class="col s2">
-											<form ng-submit="deleteProblem(problem._id)">
-												<button class="btn waves-effect waves-light" type="submit" name="action">
-												    <i class="material-icons">delete</i>
-											  	</button>
-											</form>
-										</div>
-										<div class="col s4">
-											<div>
-												<div class="form-group">
-							                        <input type="text" ng-model="newSolution.name">
-						                		</div>
-						                		<form ng-submit="addSolution(problem._id, newSolution)">
-							                		<button class="btn waves-effect waves-light" type="submit" name="action">Add Solution
-													    <i class="material-icons">send</i>
-												  	</button>
-											  	</form>
-											</div>
+				 	<div class="collection with-header">
+						<ul>
+							<li ng-repeat="problem in problems">
+								<div class="row">
+									<div class="col s6">
+										<a href="#!" class="collection-header">
+											{{ problem.name }}
+										</a>
+										<div class="collection">
+											<ul>
+												<li ng-repeat="solution in problem.solutions">
+													<a class="collection-item" ng-click="updateSolution(solution._id, problem._id, solution.done)" ng-class="{'done': solution.done==true}">
+														{{ solution.name }}
+													</a>
+												</li>
+											</ul>
 										</div>
 									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
+									<div class="col s2">
+										<form ng-submit="deleteProblem(problem._id)">
+											<button class="btn waves-effect waves-light" type="submit" name="action">
+											    <i class="material-icons">delete</i>
+										  	</button>
+										</form>
+									</div>
+									<div class="col s4">
+										<div>
+											<div class="form-group">
+						                        <input type="text" ng-model="newSolution.name">
+					                		</div>
+					                		<form ng-submit="addSolution(problem._id, newSolution)">
+						                		<button class="btn waves-effect waves-light" type="submit" name="action">Add Solution
+												    <i class="material-icons">send</i>
+											  	</button>
+										  	</form>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
 				</div>
 				<div class="row">
 					<div class="col s12">

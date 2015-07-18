@@ -42,7 +42,7 @@ app.controller('problemController', ['$scope', '$http', function($scope, $http) 
 		var submit = {
 			"problemId": problemId,
 			"solutionId": solutionId,
-			"done": state
+			"done": !state
 		};
 		$http.post('api/solutions/update', submit).success(function(data) {
 			$scope.solutionForm = {};
