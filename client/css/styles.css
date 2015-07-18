@@ -1,13 +1,21 @@
 /*CSS OVERRIDES*/
-nav
-{
+nav {
 	background-color: #7B1FA2;
+}
+
+ul {
+	margin: 0;
 }
 
 [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
   	position: relative;
   	left: 0;
   	visibility: visible;
+}
+
+.primary {
+	background-color: #9C27B0 !important;
+	color: #FFF;
 }
 
 .btn:hover,
@@ -20,12 +28,33 @@ a {
 	color: #9C27B0;
 }
 
+a.material-icons.white-icon {
+	color: #FFF;
+}
+
 .collection a.collection-item {
 	color: #9C27B0;
 }
 
 .done {
 	text-decoration: line-through;
+}
+
+.solution {
+	margin: 0;
+}
+
+.problem,
+.problem .card-panel {
+	margin-bottom: 0;
+}
+
+.logo {
+	width: 64px;
+	height: 64px;
+	background: url('../img/favicon.png');
+	background-size: 64px 64px;
+	float: left;
 }
 
 @media (min-width : 1024px) {
