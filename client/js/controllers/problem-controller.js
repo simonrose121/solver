@@ -25,13 +25,13 @@ app.controller('problemController', ['$scope', '$http', function($scope, $http) 
 		});
 	}
 
-	$scope.addSolution = function(id) {
+	$scope.addSolution = function(id, newSolution) {
 		var submit = {
 			"id": id,
-			"solution": $scope.solutionForm.name
+			"solution": newSolution.name
 		};
 		$http.post('api/solutions', submit).success(function(data) {
-			$scope.solutionForm = {};
+			$scope.newSolution = "";
 			$scope.problems = data;
 		}).error(function(data) {
 			console.log('Error: ' + data);
