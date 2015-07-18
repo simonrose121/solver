@@ -4,7 +4,6 @@ app.controller('problemController', ['$scope', '$http', function($scope, $http) 
 
 	$http.get('/api/problems').success(function(data) {
 		$scope.problems = data;
-        console.log(data);
 	}).error(function(data) {
 		console.log('Error: ' + data);
 	});
@@ -27,12 +26,25 @@ app.controller('problemController', ['$scope', '$http', function($scope, $http) 
 	}
 
 	$scope.addSolution = function(id) {
-		console.log(id);
 		var submit = {
 			"id": id,
 			"solution": $scope.solutionForm.name
 		};
 		$http.post('api/solutions', submit).success(function(data) {
+			$scope.solutionForm = {};
+			$scope.problems = data;
+		}).error(function(data) {
+			console.log('Error: ' + data);
+		});
+	}
+
+	$scope.updateSolution = function(solutionId, problemId, state) {
+		var submit = {
+			"problemId": problemId,
+			"solutionId": solutionId,
+			"done": state
+		};
+		$http.post('api/solutions/update', submit).success(function(data) {
 			$scope.solutionForm = {};
 			$scope.problems = data;
 		}).error(function(data) {

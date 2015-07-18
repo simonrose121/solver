@@ -17,7 +17,7 @@
 			<div class="container">
 			 	<nav>
 				    <div class="nav-wrapper">
-				      	<a href="#" class="brand-logo">Solver</a>
+				      	<a href="#" class="brand-logo center">Solver</a>
 			 		</div>
 				</nav>
 				<div class="row">
@@ -34,7 +34,7 @@
 												<ul>
 													<li ng-repeat="solution in problem.solutions">
 														<a class="collection-item">
-															<input type="checkbox" name="done" value="solution.done">
+															<input type="checkbox" name="done" ng-model="solution.done" ng-change="updateSolution(solution._id, problem._id, solution.done)">
 															{{ solution.name }}
 														</a>
 													</li>

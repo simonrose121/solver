@@ -22,6 +22,7 @@ app.post('/api/problems', problemController.create);
 app.delete('/api/problems/:id', problemController.delete);
 
 app.post('/api/solutions', solutionController.add);
+app.post('/api/solutions/update', solutionController.update);
 
 app.listen(3000, function() {
 	console.log('listening');
