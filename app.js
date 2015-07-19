@@ -5,7 +5,18 @@ var express = require('express'),
 	problemController = require('./server/controllers/problem-controller.js'),
 	solutionController = require('./server/controllers/solution-controller.js');
 
-mongoose.connect('mongodb://localhost:27017/test');
+var config = JSON.parse(process.env.APP_CONFIG);
+var MongoClient = require('mongodb').MongoClient;
+MongoClient.connect(
+	"mongodb://" + config.mongo.user + ":pword@" +
+	config.mongo.host + ":" + config.mongo.port + "/" + config.mongo.db,
+	function(err, db) {
+        if(!err) {
+            res.end("We are connected to MongoDB\n");
+        } else {
+            res.end("Error while connecting to MongoDB\n");
+        }
+});
 
 app.use(bodyParser.json());
 
