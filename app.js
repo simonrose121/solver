@@ -9,8 +9,18 @@ mongoose.connect('mongodb://localhost:27017/test');
 
 app.use(bodyParser.json());
 
+app.set('view engine', 'ejs')
+
 app.get('/', function(req, res) {
-	res.sendFile(__dirname + '/client/views/index.html');
+	res.render(__dirname + '/client/views/index.ejs', {
+		isAuthenticated: false
+	});
+});
+
+app.get('/login', function(req, res) {
+	res.render(__dirname + '/client/views/login.html', {
+
+	})
 });
 
 app.use('/js', express.static(__dirname + '/client/js'));
