@@ -7,6 +7,7 @@ var solutionSchema = mongoose.Schema({
 
 var problemSchema = mongoose.Schema({
 	name: String,
+	user: String,
 	solutions: [solutionSchema]
 });
 
