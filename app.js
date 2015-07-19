@@ -6,6 +6,7 @@ var express = require('express'),
 	mongoose = require('mongoose'),
 	problemController = require('./server/controllers/problem-controller.js'),
 	solutionController = require('./server/controllers/solution-controller.js'),
+	userController = require('./server/controllers/user-controller.js');
 	passport = require('passport'),
 	passportLocal = require('passport-local');
 
@@ -25,12 +26,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new passportLocal.Strategy(function(username, password, done) {
-	// find username and verify password in database
-	if (username == password) {
-		done(null, { _id: username, name: username });
-	} else {
-		done(null, null);
-	}
+	userController.authenticate({ username: username, password: password }, function(err, result) {
+		if (result) {
+			done(null, { _id: result._id, name: result.name });
+		} else {
+			done(null, null);
+		}
+	});
 }));
 
 passport.serializeUser(function(user, done) {
@@ -38,8 +40,12 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(_id, done) {
-	// query database or cache
-	done(null, { _id: _id, name: _id });
+	userController.getUser(_id, function(err, result) {
+		if (result)
+			done(null, { _id: result._id, name: result.username });
+		else
+			done(null, null);
+	});
 });
 
 app.set('view engine', 'ejs');
@@ -52,11 +58,7 @@ app.get('/', function(req, res) {
 	});
 });
 
-app.get('/login', function(req, res) {
-	res.render(__dirname + '/client/views/login.ejs');
-});
-
-app.post('/login', passport.authenticate('local'), function(req, res) {
+app.post('/', passport.authenticate('local'), function(req, res) {
 	res.redirect('/');
 });
 
