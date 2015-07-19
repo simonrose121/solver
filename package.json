@@ -5,6 +5,7 @@
     "body-parser": "^1.12.4",
     "express": "4.12.4",
     "mongoose": "^4.0.3",
-    "everyauth": "^0.4.9"
+    "everyauth": "^0.4.9",
+    "mongodb": "2.0.39"
   }
 }
