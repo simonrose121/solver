@@ -57,21 +57,21 @@ app.get('/', function(req, res) {
 		user: req.user
 	});
 });
-
 app.post('/', passport.authenticate('local'), function(req, res) {
 	res.redirect('/');
 });
-
+app.get('/user/list', userController.list);
+app.get('/user/create', function(req, res) {
+	res.render(__dirname + '/client/views/user/create.ejs');
+});
+app.post('/user/create', function(req, res) {
+	userController.addUser(req);
+	res.redirect('/');
+});
 app.get('/logout', function(req, res) {
 	req.logout();
 	res.redirect('/');
 });
-
-// Static file serving
-app.use('/js', express.static(__dirname + '/client/js'));
-app.use('/css', express.static(__dirname + '/client/css'));
-app.use('/img', express.static(__dirname + '/client/img'));
-app.use('/font', express.static(__dirname + '/client/font'));
 
 // API Routes
 app.get('/api/problems', problemController.list);
@@ -80,6 +80,12 @@ app.delete('/api/problems/:id', problemController.delete);
 
 app.post('/api/solutions', solutionController.add);
 app.post('/api/solutions/update', solutionController.update);
+
+// Static file serving
+app.use('/js', express.static(__dirname + '/client/js'));
+app.use('/css', express.static(__dirname + '/client/css'));
+app.use('/img', express.static(__dirname + '/client/img'));
+app.use('/font', express.static(__dirname + '/client/font'));
 
 // Start app
 app.listen(3000, function() {

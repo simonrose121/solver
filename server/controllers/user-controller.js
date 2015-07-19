@@ -1,5 +1,13 @@
 var schema = require('../models/user-schema');
 
+module.exports.list = function(req, res) {
+	schema.find({}, function(err, result) {
+		if (err)
+			throw err;
+		res.json(result);
+	})
+};
+
 module.exports.getUser = function(_id, res) {
 	schema.findById(_id, function(err, result) {
 		if (err)
@@ -9,7 +17,7 @@ module.exports.getUser = function(_id, res) {
 };
 
 module.exports.addUser = function(req, res) {
-	var user = new schema({ username: req.username, password: req.password });
+	var user = new schema({ username: req.body.username, password: req.body.password });
 	user.save(function(err) {
 		if (err)
 			throw err;
