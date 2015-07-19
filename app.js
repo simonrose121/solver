@@ -60,6 +60,11 @@ app.post('/login', passport.authenticate('local'), function(req, res) {
 	res.redirect('/');
 });
 
+app.get('/logout', function(req, res) {
+	req.logout();
+	res.redirect('/');
+});
+
 // Static file serving
 app.use('/js', express.static(__dirname + '/client/js'));
 app.use('/css', express.static(__dirname + '/client/css'));
