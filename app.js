@@ -6,17 +6,7 @@ var express = require('express'),
 	solutionController = require('./server/controllers/solution-controller.js');
 
 var config = JSON.parse(process.env.APP_CONFIG);
-var MongoClient = require('mongodb').MongoClient;
-MongoClient.connect(
-	"mongodb://" + config.mongo.user + ":pword@" +
-	config.mongo.host + ":" + config.mongo.port + "/" + config.mongo.db,
-	function(err, db) {
-        if(!err) {
-            res.end("We are connected to MongoDB\n");
-        } else {
-            res.end("Error while connecting to MongoDB\n");
-        }
-});
+mongoose.connect('mongodb://' + config.mongo.user + ':pword@' + config.mongo.host + ':' + config.mongo.port + '/' + config.mongo.db);
 
 app.use(bodyParser.json());
 
